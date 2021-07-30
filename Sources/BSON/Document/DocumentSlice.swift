@@ -10,6 +10,10 @@ public struct DocumentSlice: RandomAccessCollection {
     public subscript(position: DocumentIndex) -> (String, Primitive) {
         return document.pair(atIndex: position)!
     }
+
+    public subscript(bounds: Range<DocumentIndex>) -> DocumentSlice {
+        return DocumentSlice(document: document, startIndex: bounds.lowerBound, endIndex: bounds.upperBound)
+    }
     
     public typealias Element = (String, Primitive)
     public typealias SubSequence = DocumentSlice

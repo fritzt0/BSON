@@ -59,6 +59,10 @@ extension Document: RandomAccessCollection {
     public var pairs: DocumentPairIterator {
         return DocumentPairIterator(document: self)
     }
+    
+    public subscript(bounds: Range<DocumentIndex>) -> DocumentSlice {
+        return DocumentSlice(document: self, startIndex: bounds.lowerBound, endIndex: bounds.upperBound)
+    }
 }
 
 public struct DocumentIndex: Comparable {
